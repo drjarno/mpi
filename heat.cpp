@@ -2,6 +2,7 @@
 #include <fstream>
 #include <mpi.h>
 
+
 int main(int argc, char **argv) {
   MPI_Init(&argc, &argv);
 
@@ -18,12 +19,35 @@ int main(int argc, char **argv) {
     starttime = MPI_Wtime();
   }
 
-  const int gridsize = 400;
-  const int num_iterations = 50000;
-  const int save_every = 100;
-  const double alpha = 0.1;
-  const double dt = 0.05;
-  const double dx = 0.1;
+  double spike_temperature;
+  double spike_width;
+  int gridsize;
+  int num_iterations;
+  int save_every;
+  double alpha;
+  double dt;
+  double dx;
+
+  if(rank == 0) {
+    // Pretend this is read from a configuration file
+    spike_temperature = 100;
+    spike_width = 10;
+    gridsize = 400;
+    num_iterations = 50000;
+    save_every = 100;
+    alpha = 0.1;
+    dt = 0.05;
+    dx = 0.1;
+  }
+
+  // Send the configuration data to the other processes
+  MPI_Bcast(&spike_temperature, 1, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+  MPI_Bcast(&spike_width, 1, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+  MPI_Bcast(&gridsize, 1, MPI_INT, 0, MPI_COMM_WORLD);
+  MPI_Bcast(&num_iterations, 1, MPI_INT, 0, MPI_COMM_WORLD);
+  MPI_Bcast(&alpha, 1, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+  MPI_Bcast(&dt, 1, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+  MPI_Bcast(&dx, 1, MPI_DOUBLE, 0, MPI_COMM_WORLD);
 
   // Divide the grid over all processes and add ghost cell
   int localgridsize = gridsize / num_processes + 2;
@@ -34,8 +58,14 @@ int main(int argc, char **argv) {
   double *localgrid_future = new double[localgridsize];
 
   // Init
-  for(int i = 0; i < localgridsize; i++)
-    localgrid_now[i] = (i + rank*(gridsize / num_processes));// % 3;
+  for(int i = 0; i < localgridsize; i++) {
+    double x = (i + rank*(gridsize / num_processes)) * dx;
+    if(x < gridsize * dx / 2. - spike_width / 2. || x > gridsize * dx / 2. + spike_width / 2.)
+      localgrid_now[i] = 0;
+    else
+      localgrid_now[i] = spike_temperature;
+  }
+
   if(rank == 0) {
     localgrid_now[0] = 0;
     localgrid_future[0] = 0;
