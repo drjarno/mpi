@@ -32,16 +32,23 @@ int main(int argc, char *argv[]) {
   double stepsize = 1.;
   double *local_distance = new double[num_experiments];
 
+  num_trials = 10;
+  num_experiments = 1;
+
   int local_num_trials = num_trials / num_processes;
 
   for(int k = 0; k < num_experiments; k++) {
     local_distance[k] = 0;
     for(int j = 0; j < local_num_trials; j++) {
       double x = 0, y = 0, z = 0;
+      std::ofstream trackfile("tracks" + std::to_string(j) + ".csv");
+      trackfile << "x,y,z,dx,dy,dz,i\n";
       for(int i = 0; i < (k+1)*num_steps; i++) {
         // Generate random 3D angle
         double phi = 2*M_PI*dist(generator);
         double theta = acos(2*dist(generator) - 1);
+
+        trackfile << x << ',' << y << ',' << z << ',' << stepsize * cos(phi) * sin(theta) << ',' << stepsize * sin(phi) * sin(theta) << ',' << stepsize * cos(theta) << ',' << i << '\n';
 
         // Take a step in the random direction
         x += stepsize * cos(phi) * sin(theta);
@@ -49,6 +56,7 @@ int main(int argc, char *argv[]) {
         z += stepsize * cos(theta);
 
       }
+      trackfile.close();
       local_distance[k] += sqrt(x*x + y*y + z*z);
     }
     local_distance[k] /= local_num_trials;
