@@ -49,7 +49,7 @@ int main(int argc, char **argv) {
   MPI_Bcast(&dt, 1, MPI_DOUBLE, 0, MPI_COMM_WORLD);
   MPI_Bcast(&dx, 1, MPI_DOUBLE, 0, MPI_COMM_WORLD);
 
-  // Divide the grid over all processes and add ghost cell
+  // Divide the grid over all processes and add ghost cells
   int localgridsize = gridsize / num_processes + 2;
   if(rank == num_processes-1)
     localgridsize += gridsize % num_processes;
