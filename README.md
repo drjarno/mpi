@@ -1,6 +1,6 @@
 [français](#markdown-header-seminaire-mpi) | [english](#markdown-header-mpi-seminar)
 # Séminaire MPI
-Cet dépôt du code source contient l'exemple de code pour exécuter des simulations à l'aide de « Message Parsing Interface (MPI) ». Il fait partie du séminaire MPI donné à l'Université d'Ottawa.
+Cet dépôt du code source contient des exemples de code pour exécuter des simulations à l'aide de « Message Parsing Interface (MPI) ». Il fait partie du séminaire MPI donné à l'Université d'Ottawa.
 ## Chaleur
 Le code source « heat.cpp » est pour une simple simulation de chaleur en une dimension et cela montre comment les processus MPI communiquent et l'usage de cellules fantômes.
 ### Compiler
@@ -18,7 +18,7 @@ Pour compiler, tapez
     mpic++ randomwalk.cpp -o randomwalk
 
 ## Impasse
-Le code source « deadlock.cpp » démonstrate un erreur fréquente ou un processus MPI attend un autre alors que l'autre attend le premier. Alors ils attendent indéfinement.
+Le code source « deadlock.cpp » démonstrate un erreur fréquente où un processus MPI attend un autre alors que l'autre attend le premier. Alors ils attendent indéfinement.
 ### Compiler
 Pour compiler, tapez
 
@@ -26,7 +26,7 @@ Pour compiler, tapez
 
 Essayez d'échanger la ligne 24 avec 25 pour corriger l'impasse
 
-## Mismatch
+## Disparité
 L'ordre dans lequel les choses sont envoyé et reçu est important. Le code source « mismatch.cpp » montre que se passe si l'ordre est erroné.
 ### Compiler
 Pour compiler, tapez
