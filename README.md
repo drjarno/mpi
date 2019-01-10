@@ -1,24 +1,24 @@
 [français](#markdown-header-seminaire-mpi) | [english](#markdown-header-mpi-seminar)
 # Séminaire MPI
-Cet dépôt du code source contient des exemples de code pour exécuter des simulations à l'aide de « Message Parsing Interface (MPI) ». Il fait partie du séminaire MPI donné à l'Université d'Ottawa.
+Ce dépôt du code source contient des exemples de code pour exécuter des simulations à l'aide de « Message Parsing Interface (MPI) ». Il fait partie du séminaire MPI donné à l'Université d'Ottawa.
 ## Chaleur
-Le code source « heat.cpp » est pour une simple simulation de chaleur en une dimension et cela montre comment les processus MPI communiquent et l'usage de cellules fantômes.
+Le code source « heat.cpp » est pour une simple simulation de chaleur en une dimension et cela montre comment les processus MPI se communiquent et l'usage de cellules fantômes.
 ### Compiler
 Pour compiler, tapez
 
     mpic++ heat.cpp -o heatmpi
 
 ### Tracer
-Si vous avez ffmpeg et gnuplot installé sous Linux ou macOS, vous pouvez utiliser plot.sh pour créer un film des résultats de la simulation.
+Si vous avez ffmpeg et gnuplot installés sous Linux ou macOS, vous pouvez utiliser plot.sh pour créer un film des résultats de la simulation.
 ## Marche aléatoire
-Le code source « randomwalk.cpp » est un algorithme de marche aléatoire démontrant que la distance varie proportionnellement à l'inverse de racine carré du nombre de marches. Cela montre l'usage de « MPI_Reduce » pour rassembler les résultats de tous les processus MPI.
+Le code source « randomwalk.cpp » est un algorithme de marche aléatoire démontrant que la distance varie proportionnellement à l'inverse de racine carré du nombre de pas. Cela montre l'usage de « MPI_Reduce » pour rassembler les résultats de tous les processus MPI.
 ### Compiler
 Pour compiler, tapez
 
     mpic++ randomwalk.cpp -o randomwalk
 
 ## Impasse
-Le code source « deadlock.cpp » démonstrate un erreur fréquente où un processus MPI attend un autre alors que l'autre attend le premier. Alors ils attendent indéfinement.
+Le code source « deadlock.cpp » démontre une erreur fréquente où un processus MPI attend un autre alors que l'autre attend le premier. Alors ils attendent indéfinement.
 ### Compiler
 Pour compiler, tapez
 
@@ -27,7 +27,7 @@ Pour compiler, tapez
 Essayez d'échanger la ligne 24 avec 25 pour corriger l'impasse
 
 ## Disparité
-L'ordre dans lequel les choses sont envoyé et reçu est important. Le code source « mismatch.cpp » montre que se passe si l'ordre est erroné.
+L'ordre dans lequel les choses sont envoyées et reçues est important. Le code source « mismatch.cpp » montre qui se passe si l'ordre est mauvais.
 ### Compiler
 Pour compiler, tapez
 
