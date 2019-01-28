@@ -1,6 +1,12 @@
 [français](#markdown-header-seminaire-mpi) | [english](#markdown-header-mpi-seminar)
 # Séminaire MPI
 Ce dépôt du code source contient des exemples de code pour exécuter des simulations à l'aide de « Message Parsing Interface (MPI) ». Il fait partie du séminaire MPI donné à l'Université d'Ottawa.
+
+Vous pourriez exécuter les exemples avec la commande:
+
+    mpirun -np X ./programme
+
+Remplacez « X » avec le nombre de processus que vous désirez utiliser et « programme » avec le nom de l'exemple que vous souhaitez exécuter.
 ## Chaleur
 Le code source « heat.cpp » est pour une simple simulation de chaleur en une dimension et cela montre comment les processus MPI se communiquent et l'usage de cellules fantômes.
 ### Compiler
@@ -37,6 +43,11 @@ Pour compiler, tapez
 # MPI Seminar
 This repository contains sample code for running simulations using Message Passing Interface (MPI). It is part of the MPI seminar given at the University of Ottawa.
 
+The examples can be run with
+
+    mpirun -np X ./program
+
+Replace "X" with the number of processes you want to use and "program" by the name of the example program you wish to run.
 ## Heat
 The code heat.cpp is for a simple 1d heat simulation and demonstrates how to set up MPI and how to let the MPI processes communicate and the use of ghost cells.
 ### Compiling
