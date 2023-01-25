@@ -45,6 +45,7 @@ int main(int argc, char **argv) {
   MPI_Bcast(&spike_width, 1, MPI_DOUBLE, 0, MPI_COMM_WORLD);
   MPI_Bcast(&gridsize, 1, MPI_INT, 0, MPI_COMM_WORLD);
   MPI_Bcast(&num_iterations, 1, MPI_INT, 0, MPI_COMM_WORLD);
+  MPI_Bcast(&save_every, 1, MPI_INT, 0, MPI_COMM_WORLD);
   MPI_Bcast(&alpha, 1, MPI_DOUBLE, 0, MPI_COMM_WORLD);
   MPI_Bcast(&dt, 1, MPI_DOUBLE, 0, MPI_COMM_WORLD);
   MPI_Bcast(&dx, 1, MPI_DOUBLE, 0, MPI_COMM_WORLD);
