@@ -20,7 +20,7 @@ int main(int argc, char *argv[]) {
     MPI_Send(a, 80000, MPI_INT, 1, 0, MPI_COMM_WORLD);
     MPI_Recv(b, 80000, MPI_INT, 1, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
   }
-  else {
+  if(rank == 1) {
     MPI_Send(a, 80000, MPI_INT, 0, 0, MPI_COMM_WORLD);
     MPI_Recv(b, 80000, MPI_INT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
   }
