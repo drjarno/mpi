@@ -1,4 +1,4 @@
-[français](#markdown-header-seminaire-mpi) | [english](#markdown-header-mpi-seminar)
+[français](#séminaire-mpi) | [english](#mpi-seminar)
 # Séminaire MPI
 Ce dépôt du code source contient des exemples de code pour exécuter des simulations à l'aide de « Message Parsing Interface (MPI) ». Il fait partie du séminaire MPI donné à l'Université d'Ottawa.
 
